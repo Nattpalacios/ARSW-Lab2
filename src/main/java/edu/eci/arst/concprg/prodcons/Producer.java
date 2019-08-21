@@ -34,10 +34,14 @@ public class Producer extends Thread {
 
             dataSeed = dataSeed + rand.nextInt(100);
             System.out.println("Producer added " + dataSeed);
-            queue.add(dataSeed);
+            synchronized (queue) {
+            	queue.add(dataSeed);
+                queue.notify();
+			}
+            
             
             try {
-                Thread.sleep(1000);
+                Thread.sleep(300);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Producer.class.getName()).log(Level.SEVERE, null, ex);
             }
