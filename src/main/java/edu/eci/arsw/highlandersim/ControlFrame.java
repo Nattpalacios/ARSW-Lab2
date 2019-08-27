@@ -66,6 +66,7 @@ public class ControlFrame extends JFrame {
         JToolBar toolBar = new JToolBar();
         contentPane.add(toolBar, BorderLayout.NORTH);
 
+        JButton btnResume = new JButton("Resume");
         final JButton btnStart = new JButton("Start");
         btnStart.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -79,39 +80,49 @@ public class ControlFrame extends JFrame {
                 }
 
                 btnStart.setEnabled(false);
-
+                btnResume.setEnabled(false);
             }
         });
         toolBar.add(btnStart);
 
+        
         JButton btnPauseAndCheck = new JButton("Pause and check");
         btnPauseAndCheck.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-
-                /*
-				 * COMPLETAR
-                 */
+            	
+            	if(immortals != null) {
+        			synchronized (immortals) {
+        				try {
+							immortals.wait();
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+        			}
+            	}
+            	
+            	System.out.println("hola");
+            	btnPauseAndCheck.setEnabled(false);
+            	btnResume.setEnabled(true);
+            	
                 int sum = 0;
                 for (Immortal im : immortals) {
                     sum += im.getHealth();
                 }
 
                 statisticsLabel.setText("<html>"+immortals.toString()+"<br>Health sum:"+ sum);
-                
-                
 
             }
         });
         toolBar.add(btnPauseAndCheck);
 
-        JButton btnResume = new JButton("Resume");
+        
 
         btnResume.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                /**
-                 * IMPLEMENTAR
-                 */
-
+                immortals.notify();
+            	
+            	btnPauseAndCheck.setEnabled(true);
+            	btnResume.setEnabled(false);
             }
         });
 
