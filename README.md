@@ -21,4 +21,4 @@ Este valor debería ser N*100 que es el valor inicial que se le da a cada jugado
 3. Corre la aplicación y verifica cómo trabaja la opción 'pause and check'. ¿Se cumple el invariante?
 No se cumple el invariante, la suma total de las vidas siempre da un valor distinto.
 
- 5. Revisa la operación de nuevo. ¿Se cumple el invariante o no?
+5- Revisa la operación de nuevo. ¿Se cumple el invariante o no?
