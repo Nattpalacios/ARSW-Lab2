@@ -31,14 +31,22 @@ public class Producer extends Thread {
     @Override
     public void run() {
         while (true) {
-
-            dataSeed = dataSeed + rand.nextInt(100);
-            System.out.println("Producer added " + dataSeed);
-            synchronized (queue) {
-            	queue.add(dataSeed);
-                queue.notify();
-			}
-            
+        	if(queue.size() < stockLimit) {
+	            dataSeed = dataSeed + rand.nextInt(100);
+	            System.out.println("Producer added " + dataSeed);
+	            synchronized (queue) {
+	            	queue.add(dataSeed);
+	                queue.notify();
+				}
+        	}else {
+        		synchronized (queue) {
+        			try {
+    					queue.wait();
+    				} catch (InterruptedException e) {
+    					e.printStackTrace();
+    				}
+				}
+        	}
             
             try {
                 Thread.sleep(300);

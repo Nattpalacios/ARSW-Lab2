@@ -35,6 +35,7 @@ public class Consumer extends Thread{
     	    	}
     	    	int elem=queue.poll();
     	        System.out.println("Consumer consumes "+elem);
+    	        queue.notify();
         	}
     		try {
                 Thread.sleep(1200);
