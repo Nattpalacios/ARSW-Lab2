@@ -16,16 +16,19 @@
 ## Part II
 
 2. Para este caso, para N jugadores, ¿cuál debería ser el valor de las vidas? 
-Este valor debería ser N*100 que es el valor inicial que se le da a cada jugador.
+- Este valor debería ser N*100 que es el valor inicial que se le da a cada jugador.
 
 3. Corre la aplicación y verifica cómo trabaja la opción 'pause and check'. ¿Se cumple el invariante?
-No se cumple el invariante, la suma total de las vidas siempre da un valor distinto.
+- No se cumple el invariante, la suma total de las vidas siempre da un valor distinto.
 
 4. Para hacer funcionar el 'pause and check' y que se hiciera una suma correcta, se creó una variable atómica para poder manejar el tema de la sincronización de los hilos, como se muestra a continuación, donde la variable atómica se llama 'pausarHilo'.
 
-- En ControlFrame:
+- En ControlFrame en 'pause and check':
 
 ![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/4.PNG)  
+
+- En ControlFrame en 'resume':
+
 ![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/5.PNG)
 
 - En Immortal:
@@ -33,3 +36,8 @@ No se cumple el invariante, la suma total de las vidas siempre da un valor disti
 ![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/6.PNG)
 
 5. Revisa la operación de nuevo. ¿Se cumple el invariante o no?
+- Sí se cumple el invariante, como se muestra en las imágenes.
+
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/7.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/8.PNG)
+
