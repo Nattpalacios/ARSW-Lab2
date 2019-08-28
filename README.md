@@ -41,3 +41,16 @@
 ![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/7.PNG)
 ![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/8.PNG)
 
+6. Posibles regiones críticas. 
+- En el momento en que el inmortal pelea, en el método 'fight', como se cambian la vida del atacante y del que ataca, se puede dar el caso donde más de un hilo esté modificando estos valores al mismo tiempo.
+
+11- Para implementar STOP se creó el booleano 'running', el cual inicia en true indicando que el programa está activo.
+
+- En Immortal:
+
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/9.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/10.PNG)
+
+- En ControlFrame:
+
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/11.PNG)
