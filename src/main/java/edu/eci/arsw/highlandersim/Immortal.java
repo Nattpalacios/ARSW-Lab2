@@ -16,10 +16,6 @@ public class Immortal extends Thread {
     
     public static AtomicBoolean pausarHilo;
     
-    private boolean vivo = true;
-    
-    private static final Object tieLock = new Object(); 
-    
     private boolean running = true;
     
     private final String name;
@@ -66,7 +62,7 @@ public class Immortal extends Thread {
 
                 im = immortalsPopulation.get(nextFighterIndex);
 
-                this.transferirVida(im);
+                this.fight(im);
 			}
 
             
@@ -85,49 +81,7 @@ public class Immortal extends Thread {
     	this.running = running;
     }
 
-    public void transferirVida(Immortal i2) {
-    	Immortal im = this;
-    	
-    	class Helper {
-    		public void fight(Immortal i2) {
-
-    	        if (i2.getHealth() > 0) {
-    	            i2.changeHealth(i2.getHealth() - defaultDamageValue);
-    	            if(i2.getHealth() == 0) vivo = false;
-    	            health += defaultDamageValue;
-    	            updateCallback.processReport("Fight: " + this + " vs " + i2+"\n");
-    	        } else {
-    	            updateCallback.processReport(this + " says:" + i2 + " is already dead!\n");
-    	        }
-
-    	    }
-    	}
-    	int fromHash = System.identityHashCode(this);
-		int toHash = System.identityHashCode(i2);
-		
-		if (fromHash < toHash) {
-			synchronized (this) {
-				synchronized (i2) {
-					new Helper().fight(i2);
-				}
-			}
-		} else if (fromHash > toHash) {
-			synchronized (i2) {
-				synchronized (this) {
-					new Helper().fight(i2);
-				}
-			}
-		} else {
-			synchronized (tieLock) {
-				synchronized (this) {
-					synchronized (i2) {
-						new Helper().fight(i2);
-					}
-				}
-			}
-		}
-    }
-    /*public void fight(Immortal i2) {
+    public void fight(Immortal i2) {
 
         if (i2.getHealth() > 0) {
             i2.changeHealth(i2.getHealth() - defaultDamageValue);
@@ -137,7 +91,7 @@ public class Immortal extends Thread {
             updateCallback.processReport(this + " says:" + i2 + " is already dead!\n");
         }
 
-    }*/
+    }
 
     public void changeHealth(int v) {
         health = v;
