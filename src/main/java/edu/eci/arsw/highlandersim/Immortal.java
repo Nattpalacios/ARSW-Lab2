@@ -2,6 +2,7 @@ package edu.eci.arsw.highlandersim;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Immortal extends Thread {
 
@@ -12,38 +13,56 @@ public class Immortal extends Thread {
     private int defaultDamageValue;
 
     private final List<Immortal> immortalsPopulation;
-
+    
+    public static AtomicBoolean pausarHilo;
+    
     private final String name;
 
     private final Random r = new Random(System.currentTimeMillis());
 
 
-    public Immortal(String name, List<Immortal> immortalsPopulation, int health, int defaultDamageValue, ImmortalUpdateReportCallback ucb) {
+    public Immortal(String name, List<Immortal> immortalsPopulation, int health, int defaultDamageValue, ImmortalUpdateReportCallback ucb, AtomicBoolean pausarHilo) {
         super(name);
         this.updateCallback=ucb;
         this.name = name;
         this.immortalsPopulation = immortalsPopulation;
         this.health = health;
         this.defaultDamageValue=defaultDamageValue;
+        this.pausarHilo = pausarHilo;
     }
 
     public void run() {
 
         while (true) {
+        	
+        	synchronized (pausarHilo) {
+				while(pausarHilo.get()) {
+					try {
+						pausarHilo.wait();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+					
+			}
             Immortal im;
+            
+            synchronized (immortalsPopulation) {
+            	int myIndex = immortalsPopulation.indexOf(this);
 
-            int myIndex = immortalsPopulation.indexOf(this);
+                int nextFighterIndex = r.nextInt(immortalsPopulation.size());
 
-            int nextFighterIndex = r.nextInt(immortalsPopulation.size());
+                //avoid self-fight
+                if (nextFighterIndex == myIndex) {
+                    nextFighterIndex = ((nextFighterIndex + 1) % immortalsPopulation.size());
+                }
 
-            //avoid self-fight
-            if (nextFighterIndex == myIndex) {
-                nextFighterIndex = ((nextFighterIndex + 1) % immortalsPopulation.size());
-            }
+                im = immortalsPopulation.get(nextFighterIndex);
 
-            im = immortalsPopulation.get(nextFighterIndex);
+                this.fight(im);
+			}
 
-            this.fight(im);
+            
 
             try {
                 Thread.sleep(1);
