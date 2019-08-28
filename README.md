@@ -19,7 +19,7 @@
 - Este valor debería ser N*100 que es el valor inicial que se le da a cada jugador.
 
 3. Corre la aplicación y verifica cómo trabaja la opción 'pause and check'. ¿Se cumple el invariante?
-- No se cumple el invariante, la suma total de las vidas siempre da un valor distinto.
+- No se cumple el invariante, la suma total de las vidas siempre da un valor distinto. Además, al oprimir 'pause and check' da una suma, sin pausar el juego.
 
 4. Para hacer funcionar el 'pause and check' y que se hiciera una suma correcta, se creó una variable atómica para poder manejar el tema de la sincronización de los hilos, como se muestra a continuación, donde la variable atómica se llama 'pausarHilo'.
 
