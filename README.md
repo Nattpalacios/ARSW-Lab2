@@ -1,4 +1,4 @@
-# Laboratorio 3
+# Laboratorio 2
 ## Part I
 
 1. La clase responsable de que el programa sea ineficiente o de que el consumo de CPU sea elevado es Consumer, ya que todo el tiempo está preguntando si hay productos para consumir y el productor solo produce cada cierto tiempo.
