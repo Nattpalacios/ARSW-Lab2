@@ -3,15 +3,15 @@
 
 1. La clase responsable de que el programa sea ineficiente o de que el consumo de CPU sea elevado es Consumer, ya que todo el tiempo está preguntando si hay productos para consumir y el productor solo produce cada cierto tiempo.
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/1.PNG "Ineficiente. Consumo inicial.")
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/1.PNG "Ineficiente. Consumo inicial.")
 
 2. Al corregirlo, haciendo que el productor notifique cada vez que produzca, el consumo de CPU se reduce de manera notoria.
  
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/2.PNG "Modificado")
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/2.PNG "Modificado")
 
 3. Al hacer que el productor produzca más rápido y el consumidor consuma lentamente, teniendo en cuenta el stock limit, no se aumenta el consumo de CPU.
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/3.PNG "Arreglado")
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/3.PNG "Arreglado")
 
 ## Part II
 
@@ -25,21 +25,21 @@
 
 - En ControlFrame en 'pause and check':
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/4.PNG)  
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/4.PNG)  
 
 - En ControlFrame en 'resume':
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/5.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/5.PNG)
 
 - En Immortal:
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/6.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/6.PNG)
 
 5. Revisa la operación de nuevo. ¿Se cumple el invariante o no?
 - Sí se cumple el invariante, como se muestra en las imágenes.
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/7.PNG)
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/8.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/7.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/8.PNG)
 
 6. Posibles regiones críticas. 
 - En el momento en que el inmortal pelea, en el método 'fight', como se cambian la vida del atacante y del que ataca, se puede dar el caso donde más de un hilo esté modificando estos valores al mismo tiempo.
@@ -48,9 +48,9 @@
 
 - En Immortal:
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/9.PNG)
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/10.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/9.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/10.PNG)
 
 - En ControlFrame:
 
-![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab3/master/Imagenes/11.PNG)
+![](https://raw.githubusercontent.com/Nattpalacios/ARSW-Lab2/master/Imagenes/11.PNG)
